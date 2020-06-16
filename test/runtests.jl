@@ -142,6 +142,16 @@ end
 
 end
 
+@testset "Land - callable and not NaNs" begin
+  using CLIMAParameters.Land.Soil.Water
+  struct LandParameterSet <: AbstractLandParameterSet end
+  ps = LandParameterSet()
+  @test !isnan(Ω(ps))
+  @test !isnan(T1(ps))
+  @test !isnan(T2(ps))
+end
+
+
 import CLIMAParameters
 CLIMAParameters.Planet.grav(::EarthParameterSet) = 2.0
 @testset "Overriding defaults" begin
